@@ -6,14 +6,9 @@ on:
       - "standalone"
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-18.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: standalone
-      
+    steps:      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       
@@ -32,6 +27,6 @@ jobs:
         with:
           push: true
           tags: guyleaf/ubuntu-hbase:standalone
-      
+
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
